@@ -32,7 +32,8 @@ if __name__ == "__main__":
 	                      "text002": "text-davinci-002",
 	                      "text003": "text-davinci-003",
 	                      "gpt4": "gpt-4",
-	                      "gpt-3.5-turbo": "gpt-3.5-turbo"
+	                      "gpt-3.5-turbo": "gpt-3.5-turbo",
+                       	  "llama3": "llama3"
 	                      }
 
 	# get the arguments
@@ -49,7 +50,7 @@ if __name__ == "__main__":
 		dataset_name, LM, prompt_name, n_votes, batch_size = combo
 		config_fn = f"{LM}_{prompt_name}"
 		if n_votes != 1:
-			config_fn += f"_n:{n_votes}"
+			config_fn += f"_n_{n_votes}"
 		config_fn += ".json"
 		fwn = f"source/configuration/config_files/{dataset_name}/{config_fn}"
 		# if os.path.exists(fwn):
@@ -61,7 +62,7 @@ if __name__ == "__main__":
 			"prompt_name": prompt_name,
 			"n_votes": n_votes,
 			"batch_size": batch_size,
-			"no_solver": True if prompt_name in ["noNL","COT","standard", "LtM"] else False
+			"no_solver": True if prompt_name in ["COT","standard", "LtM"] else False
 		}
 
 		with open(fwn, "w") as fw:

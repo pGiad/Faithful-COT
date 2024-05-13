@@ -1,0 +1,7 @@
+{
+  "LM": "llama3",
+  "prompt_name": "standard",
+  "n_votes": 1,
+  "batch_size": 1,
+  "no_solver": true
+}
