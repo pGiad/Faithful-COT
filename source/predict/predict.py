@@ -6,7 +6,7 @@ if cwd.endswith("source/predict"):
 import sys
 sys.path.append("source")
 from configuration.configuration import Config
-from keys import API_KEYS, ORGANIZATION_IDS
+# from keys import API_KEYS, ORGANIZATION_IDS
 from model.codex import Model
 from dataset.utils import load_data
 import jsonlines
@@ -32,15 +32,15 @@ if __name__ == "__main__":
 	completion_only = args.completion_only
 	api_key_ids = eval(args.api_key_ids)
 
-	api_keys = [API_KEYS[api_key_id] for api_key_id in api_key_ids]
-	org_ids = [ORGANIZATION_IDS[api_key_id] for api_key_id in api_key_ids]
+	# api_keys = [API_KEYS[api_key_id] for api_key_id in api_key_ids]
+	# org_ids = [ORGANIZATION_IDS[api_key_id] for api_key_id in api_key_ids]
 
 	config_frn = f"source/configuration/config_files/{dataset_name}/{model_name}.json"
 	config = Config.from_json_file(config_frn)
 	config.dataset_name = dataset_name
 	config.split = split
-	config.api_keys = api_keys
-	config.org_ids = org_ids
+	# config.api_keys = api_keys
+	# config.org_ids = org_ids
 
 	# load the dataset
 	dataset_frn = f"data/{dataset_name}/{split}.jsonl"
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 	# load existing predictions if any
 	line_id = 0
 	if os.path.isfile(output_fwn):
-		with open(output_fwn, "r") as fr:
+		with open(output_fwn, "r", encoding='utf-8') as fr:
 			reader = jsonlines.Reader(fr)
 			for line_id, line in enumerate(reader):
 				example_id = line["id"]
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
 	print(f"Making predictions on dataset {dataset_name} using model {model_name},\nstarting from the {start_id}th example...")
 
-	with open(output_fwn, 'a') as fw:
+	with open(output_fwn, 'a', encoding='utf-8') as fw:
 		writer = jsonlines.Writer(fw, flush=True)
 		t0 = time.time()
 		for i, example in tqdm(enumerate(dataset), file=sys.stdout):

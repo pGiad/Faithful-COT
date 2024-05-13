@@ -80,7 +80,7 @@ def load_data(frn):
 	:return: The dataset (a list of examples, each as a dictionary).
 	'''
 	if frn.endswith(".jsonl"):
-		with open(frn, 'r') as fr:
+		with open(frn, 'r', encoding='utf-8') as fr:
 			lines = []
 			for i, line in enumerate(fr):
 				if line.strip() == "":

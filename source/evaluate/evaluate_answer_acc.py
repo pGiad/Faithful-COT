@@ -72,7 +72,7 @@ def evaluate_acc(dataset, predictions, dataset_name, non_empty_only=False, valid
 			exit(-1)
 		pred_answer = extract_pred_answer(dataset_name, prediction["answer"])
 
-		if non_empty_only and pred_answer == "":
+		if non_empty_only and (pred_answer == "" or prediction["completion"] == ""):
 			continue
 
 		if valid_only:
