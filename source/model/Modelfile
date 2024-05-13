@@ -1,0 +1,15 @@
+FROM llama3-original
+
+# set the temperature to 1 [higher is more creative, lower is more coherent]
+PARAMETER temperature 0
+PARAMETER num_predict 1000
+PARAMETER stop "# Q:"
+
+# set the system message
+# SYSTEM """
+# You give answers for a math dataset. Give your final answer in the form of 'The answer is X', where X is the answer to the question.
+# """
+
+# SYSTEM """
+# Make sure that your answer can be executed as a Python program and any text that is not code will be in comments
+# """
