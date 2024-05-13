@@ -1,2 +1,4 @@
+Follow the format of the above examples and answer the following question.
+
 Q: [QUESTION]
 A: To answer the above question, we need to answer the following subquestions:
